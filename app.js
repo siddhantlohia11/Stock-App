@@ -10,6 +10,7 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const findOrCreate = require("mongoose-findorcreate");
 // const encrypt = require('mongoose-encryption');
 
+
 const app = express();
 
 app.use(express.static("public"));
