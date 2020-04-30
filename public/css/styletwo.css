@@ -1,0 +1,29 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	width: 100%;
+	height: 100vh;
+	padding-top: 6em;
+	background: #56ab2f; 
+	background: -webkit-linear-gradient(to right, #a8e063, #56ab2f); 
+	background: linear-gradient(to right, #a8e063, #56ab2f); 
+}
+
+.navigatebar {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	font-size: 3em;
+	text-align: center;
+	color: white;
+	background-color: black;
+	z-index: 1000;
+}
+
+.container {
+	max-width: 750px;
+}
