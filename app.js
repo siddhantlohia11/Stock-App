@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const mongoose = require('mongoose');
 const session = require('express-session');
+var flash = require('connect-flash');
 const passport = require('passport');
 const passportLocalMongoose = require('passport-local-mongoose');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
@@ -14,6 +15,7 @@ const findOrCreate = require("mongoose-findorcreate");
 const app = express();
 
 app.use(express.static("public"));
+app.use(flash());
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 
@@ -119,6 +121,22 @@ app.get("/register", function(req,res){
 
 app.get("/secrets", function(req,res){
   if (req.isAuthenticated()){
+    if (req.query.search){
+      const regex = new RegExp(escapeRegex(req.query.search), 'gi');
+      Stock.find({name: regex}, function(err, allFound){
+        if (err){
+          console.log(err);
+        } else {
+          if (allFound.length > 0){
+              res.render("secrets", {item:allFound});
+          } else {
+            req.flash("error", "No Match Found");
+            // res.redirect("/secrets");
+          }
+
+        }
+      });
+    } else {
     Stock.find({}, function(err, result){
       if (result.length === 0) {
         Stock.insertMany(defaultItems, function(err){
@@ -133,7 +151,7 @@ app.get("/secrets", function(req,res){
           res.render("secrets", {item:result});
       }
     });
-
+}
   } else{
     res.redirect("/login");
   }
@@ -208,6 +226,11 @@ app.post("/delete", function(req,res){
   });
   res.redirect("/secrets");
 });
+
+function escapeRegex(text) {
+    return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+};
+
 
 app.listen(3000, function() {
   console.log("Server started on port 3000");
