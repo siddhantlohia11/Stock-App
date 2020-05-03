@@ -9,8 +9,6 @@ const passport = require('passport');
 const passportLocalMongoose = require('passport-local-mongoose');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const findOrCreate = require("mongoose-findorcreate");
-// const encrypt = require('mongoose-encryption');
-
 
 const app = express();
 
@@ -42,7 +40,6 @@ const userSchema = new mongoose.Schema ({
 userSchema.plugin(passportLocalMongoose);
 userSchema.plugin(findOrCreate);
 
-// userSchema.plugin(encrypt, {secret: process.env.SECRET, encryptedFields: ["password"]});
 
 const User = new mongoose.model("User", userSchema);
 passport.use(User.createStrategy());
@@ -77,6 +74,16 @@ const stockSchema = new mongoose.Schema ({
 });
 
 const Stock = new mongoose.model("Stock", stockSchema);
+
+const changeSchema = new mongoose.Schema ({
+  changedBy: String,
+  time: String,
+  name: String,
+  quantityNew: Number,
+  quantityOld: Number
+});
+const Change = new mongoose.model("Change", changeSchema);
+
 
 const stock1 = new Stock({
   name : "Apple",
@@ -125,33 +132,33 @@ app.get("/secrets", function(req,res){
       const regex = new RegExp(escapeRegex(req.query.search), 'gi');
       Stock.find({name: regex}, function(err, allFound){
         if (err){
-          console.log(err);
+            console.log(err);
         } else {
-          if (allFound.length > 0){
-              res.render("secrets", {item:allFound});
-          } else {
-            req.flash("error", "No Match Found");
-            // res.redirect("/secrets");
-          }
-
+            if (allFound.length > 0){
+                res.render("secrets", {item:allFound});
+            } else {
+                req.flash("error", "No Match Found");
+                res.redirect("/secrets");
+            }
         }
       });
     } else {
-    Stock.find({}, function(err, result){
-      if (result.length === 0) {
-        Stock.insertMany(defaultItems, function(err){
-          if (err){
-            console.log(err);
-          } else{
-            console.log("Successfully Added default Items to DB");
+      Stock.find({}, function(err, result){
+        if (result.length === 0) {
+          Stock.insertMany(defaultItems, function(err){
+            if (err){
+              console.log(err);
+            } else{
+              console.log("Successfully Added default Items to DB");
+            }
+          });
+          res.redirect("/secrets");
+        } else {
+            // console.log(req.user);
+            res.render("secrets", {item:result});
           }
         });
-        res.redirect("/secrets");
-      } else {
-          res.render("secrets", {item:result});
       }
-    });
-}
   } else{
     res.redirect("/login");
   }
@@ -206,12 +213,25 @@ app.post("/secrets", function(req,res){
 })
 
 app.post("/change", function(req,res){
+  var datetime = new Date();
+  // console.log(datetime);
   var quant = req.body.first;
   var buttonName = req.body.button1;
   Stock.findByIdAndUpdate(
     {_id: buttonName}, {quantity: quant}, function(err, arr){
-      if (err){
-        console.log(err);
+      if (!err){
+        // console.log(arr);
+        // console.log(req.user);
+        const change = new Change ({
+          changedBy: req.user.username,
+          time: datetime,
+          name : arr.name,
+          quantityNew: quant,
+          quantityOld: arr.quantity
+        });
+
+        change.save();
+
       }
     });
   res.redirect("/secrets");
