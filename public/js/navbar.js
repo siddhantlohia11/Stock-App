@@ -28,3 +28,4 @@ close.addEventListener("click", function(){
 	close.style.display = "none";
 	},100);
 })
+

@@ -6,11 +6,8 @@
 body {
 	width: 100%;
 	height: 100vh;
-	padding-top: 6em;
-}
-
-.container {
-	width: 750px;
+	padding-top: 5em;
+	color: #28a745;
 }
 
 .Menu {
@@ -52,4 +49,8 @@ body {
 	display: none;
 	transition: all 2s;
 	color: #28a745;
+}
+
+.wid {
+	width: 750px;
 }
