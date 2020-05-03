@@ -7,21 +7,49 @@ body {
 	width: 100%;
 	height: 100vh;
 	padding-top: 6em;
-	background-color: white;
-}
-
-.navigatebar {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	font-size: 3em;
-	text-align: center;
-	color: #28a745;
-	background-color: black;
-	z-index: 1000;
 }
 
 .container {
-	max-width: 750px;
+	width: 750px;
+}
+
+.Menu {
+	font-size: 2em;
+	color: black;
+}
+
+.dropDown {
+	position: absolute;
+	width: 100%;
+	height: 0;
+	left: 0;
+	top: 0;
+	background: #F8F8FF;
+	transition: all 2s;
+	color: black;
+	z-index: 50;
+
+}
+
+.close {
+	display: none;
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	font-size: 4em;
+	color: black;
+}
+
+.top {
+	position: absolute;
+	top: 30vh;
+	right: 30%;
+	left: 25%; 
+	text-align: center;
+}
+
+.toNext { 
+	display: none;
+	transition: all 2s;
+	color: #28a745;
 }
