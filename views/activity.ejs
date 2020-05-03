@@ -1,0 +1,15 @@
+<%- include('partials/headertwo') %>
+
+<div class="container-fluid">
+  <% for (let i = activities.length - 1; i >= 0 ; i--) {  %>
+    <h5 class="card-title"><%= activities.length - i%>) Changed By: <%=activities[i].changedBy%></h5>
+    <h5 class="card-title">Time: <%=activities[i].time%></h5>
+    <h5 class="card-title">Product Name: <%=activities[i].name%></h5>
+    <h5 class="card-title">Previous Qunatity: <%=activities[i].quantityOld%></h5>
+    <h5 class="card-title">Modified Quantity: <%=activities[i].quantityNew%></h5>
+    <br>
+  <% } %>
+</div>
+
+
+<%- include('partials/footer') %>
