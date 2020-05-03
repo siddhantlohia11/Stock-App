@@ -8,6 +8,7 @@ body {
 	height: 100vh;
 	background-color: white;
 	color: black;
+	background: url(http://localhost:3000/images/landing.jpg);
 }
 
 .container {
@@ -18,7 +19,7 @@ body {
 }
 
 .border {
-    border: 20px solid #28a745!important
+    border: 20px solid black!important
 }
 
 .container p {
