@@ -1,16 +1,19 @@
 <%- include('partials/header') %>
     
     <div class="container border border-success rounded">
-        <p>Alpine Trade & Co.</p>
-        <h1>Making the Ordinary, Extra-Ordinary</h1>
+        <p class="shadow rounded">Alpine Trade & Co.</p>
+        <h1 class="shadow-sm rounded" style="color: black">Making the Ordinary, Extra-Ordinary</h1>
         <div class="row">
-            <div class="col-sm-3"></div> 
-            <div class="col-lg-3">  
+            <div class="col-md-3"></div> 
+            <div class="col-md-3 col-sm-4 col-12">  
                 <a href="/register" class="btn btn-light btn-lg btn-block btn-outline-success mt-4 mb-4 shadow-lg rounded"><h2>Add Member</h1></a>
             </div>
-            <div class="col-lg-3">
+            <div class="col-md-3 col-sm-4 d-none d-sm-block">
                 <a href="/login" class="btn btn-light btn-lg btn-block btn-outline-success mt-4 ml-4 mb-4 shadow-lg rounded"><h2>Login</h1></a>
-            </div>    
+            </div>
+            <div class="col-12 d-block d-sm-none">
+                <a href="/login" class="btn btn-light btn-lg btn-block btn-outline-success mt-4 mb-4 shadow-lg rounded"><h2>Login</h1></a>
+            </div>      
         </div>
     </div>
 

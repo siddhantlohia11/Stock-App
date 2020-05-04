@@ -54,3 +54,17 @@ body {
 .wid {
 	width: 750px;
 }
+
+.topone {
+	position: absolute;
+	top: 30vh;
+	right: 30%;
+	left: 25%; 
+	text-align: center;
+}
+
+.next { 
+	display: none;
+	transition: all 2s;
+	color: #28a745;
+}
