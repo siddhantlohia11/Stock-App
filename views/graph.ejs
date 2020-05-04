@@ -2,7 +2,7 @@
 
     <div class="container">
       <div class="row">
-        <div class="col-12"><canvas id="bar-chart"></canvas></div>
+        <div class="col-12"><canvas id="bar-chart-horizontal"></canvas></div>
 
         <div style="margin-top: 80px;" class="col-12"><canvas id="pie-chart"></canvas></div>
       </div>
@@ -21,13 +21,35 @@
         god.push('<%=name[i]%>');
       <% }; %>
 
-    new Chart(document.getElementById("bar-chart"), {
-    type: 'bar',
+//     new Chart(document.getElementById("bar-chart"), {
+//     type: 'bar',
+//     data: {
+//       labels:god,
+//       datasets: [
+//         {
+//           label: "Items in stock",
+//           backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850","#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850","#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+//           data: dataa
+//         }
+//       ]
+//     },
+//     options: {
+//       legend: { display: false },
+//       title: {
+//         display: true,
+//         text: 'Available Stock Graph'
+//       }
+//     }
+// });
+
+
+new Chart(document.getElementById("bar-chart-horizontal"), {
+    type: 'horizontalBar',
     data: {
-      labels:god,
+      labels: god,
       datasets: [
         {
-          label: "Items in stock",
+          label: "Items in Stock",
           backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850","#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850","#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
           data: dataa
         }
