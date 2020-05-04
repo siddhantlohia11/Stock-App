@@ -26,7 +26,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-mongoose.connect("mongodb://localhost:27017/userDB", {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect("mongodb+srv://admin-Siddhant:qwerty123@cluster0-33zzh.mongodb.net/StockDB", {useNewUrlParser: true, useUnifiedTopology: true});
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
@@ -61,7 +61,6 @@ passport.use(new GoogleStrategy({
     userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo"
   },
   function(accessToken, refreshToken, profile, cb) {
-    // console.log(profile);
     User.findOrCreate({ googleId: profile.id }, function (err, user) {
       return cb(err, user);
     });
@@ -103,13 +102,14 @@ const stock3 = new Stock({
 const defaultItems = [stock1, stock2, stock3];
 
 
-
 app.get("/", function(req,res){
   res.render("home");
 });
 
+
 app.get('/auth/google',
   passport.authenticate('google', { scope: ['profile'] }));
+
 
 app.get('/auth/google/secrets',
   passport.authenticate('google', { failureRedirect: '/login' }),
@@ -118,13 +118,16 @@ app.get('/auth/google/secrets',
     res.redirect('/secrets');
   });
 
+
 app.get("/login", function(req,res){
   res.render("login");
 });
 
+
 app.get("/register", function(req,res){
   res.render("register");
 });
+
 
 app.get("/secrets", function(req,res){
   if (req.isAuthenticated()){
@@ -154,7 +157,6 @@ app.get("/secrets", function(req,res){
           });
           res.redirect("/secrets");
         } else {
-            // console.log(req.user);
             res.render("secrets", {item:result});
           }
         });
@@ -164,10 +166,28 @@ app.get("/secrets", function(req,res){
   }
 });
 
+app.get("/graph", function(req,res){
+  if (req.isAuthenticated()){
+    var name = []
+    var quant = []
+    Stock.find({}, function(err, result){
+      for (let i = 0; i < result.length; i++) {
+        name.push(result[i].name);
+        quant.push(result[i].quantity);
+      };
+      res.render("graph", {name:name, quant:quant});
+    });
+  } else{
+    res.redirect("/login");
+  }
+});
+
+
 app.get("/logout", function(req,res){
   req.logout();
   res.redirect("/");
 });
+
 
 app.get("/activity", function(req,res){
   if (req.isAuthenticated()){
@@ -180,7 +200,6 @@ app.get("/activity", function(req,res){
      res.redirect("/login");
    }
 });
-
 
 
 app.post("/register", function(req,res){
@@ -228,14 +247,11 @@ app.post("/secrets", function(req,res){
 
 app.post("/change", function(req,res){
   var datetime = new Date();
-  // console.log(datetime);
   var quant = req.body.first;
   var buttonName = req.body.button1;
   Stock.findByIdAndUpdate(
     {_id: buttonName}, {quantity: quant}, function(err, arr){
       if (!err){
-        // console.log(arr);
-        // console.log(req.user);
         const change = new Change ({
           changedBy: req.user.username,
           time: datetime,
@@ -243,9 +259,7 @@ app.post("/change", function(req,res){
           quantityNew: quant,
           quantityOld: arr.quantity
         });
-
         change.save();
-
       }
     });
   res.redirect("/secrets");
