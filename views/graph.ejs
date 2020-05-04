@@ -1,8 +1,11 @@
 <%- include('partials/headertwo') %>
 
-    <br>
-    <br>
-    <canvas id="bar-chart" width="1800" height="550"></canvas>
+    <div class="container">
+      <div class="row">
+        <div class="col-12"><canvas id="bar-chart"></canvas></div>
+      </div>
+    </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
 
     <script>
@@ -22,7 +25,7 @@
       labels:god,
       datasets: [
         {
-          label: "Population (millions)",
+          label: "Items in stock",
           backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850","#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850","#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
           data: dataa
         }
@@ -39,4 +42,4 @@
     </script>
 
 
-<%- include('partials/footer') %>
+<%- include('partials/footerone') %>

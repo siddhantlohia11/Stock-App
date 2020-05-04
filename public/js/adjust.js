@@ -1,13 +1,16 @@
-var y = document.getElementById("wid");
-var z = window.matchMedia("(max-width: 900px)");
-myFunction(z) ;
-z.addListener(myFunction);
+var b = document.getElementById("wid");
+var a = window.matchMedia("(max-width: 900px)");
 
-function myFunction(z) {
-  if (z.matches) { 
-    y.classList.remove("wid");
-  } else {
-   	y.classList.add("wid");
-  }
-}
+myFunction(a) ;
+a.addListener(myFunction);
+
+function myFunction(a) {
+  	if (a.matches) { 
+    	b.classList.remove("wid");
+	} 
+	else {
+   		b.classList.add("wid");
+  	}
+};
+
 
