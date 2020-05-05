@@ -1,28 +1,64 @@
 <%- include('partials/header') %>
 
-    <div class="container text-center">
-        <div class="row">
-        <div class="col-12">
-        <div class="jumbotron shadow-lg rounded">
-            <h1 class="display-2 font-weight-bold d-none d-sm-block shadow rounded pb-2">Alpine Trade & Co.</h1>
-            <h1 class="display-4 font-weight-bold d-block d-sm-none shadow rounded">Alpine Trade & Co.</h1>
-            <h3 class="shadow-lg rounded">Making the Ordinary, Extra-Ordinary</h3>
-            <hr class="my-4">
-            <div class="row">
-                <div class="col-md-3"></div>
-                <div class="col-md-3 col-sm-4 col-12">
-                    <a href="/register" class="btn btn-light btn-lg btn-block btn-outline-success mt-4 mb-4 shadow-lg rounded"><h2>Add Member</h1></a>
-                </div>
-                <div class="col-md-3 col-sm-4 d-none d-sm-block">
-                    <a href="/login" class="btn btn-light btn-lg btn-block btn-outline-success mt-4 ml-4 mb-4 shadow-lg rounded"><h2>Login</h1></a>
-                </div>
-                <div class="col-12 d-block d-sm-none">
-                    <a href="/login" class="btn btn-light btn-lg btn-block btn-outline-success mt-4 mb-4 shadow-lg rounded"><h2>Login</h1></a>
-                </div>
+    <header class="fixed-top">
+        <div class="container-fluid">
+            <div class="row d-none d-sm-block">
+                <img src="/images/leaf.jpg" width = "130" height = "150">
+            </div>
+            <div class="row d-block d-sm-none">
+                <img src="leaf.jpg" width = "90" height = "100">
             </div>
         </div>
-        </div>
+    </header>   
+
+    <div class="container text-center d-none d-sm-block mb-5">
+        <div class="row">
+            <div class="col-12">
+        
+                <h1 class="display-1">Alpine Trade & Co.</h1>
+                <h5 class="display-4 mt-4 mb-5">Making the Ordinary, Extra-Ordinary</h5>
+            
+            </div>
         </div>
     </div>
+
+    <div class="container text-center d-block d-sm-none mt-5 mb-5">
+        <div class="row">
+            <div class="col-12">
+        
+                <h1 class="display-5 mt-5">Alpine Trade & Co.</h1>
+                <h5 class="display-5 mt-4">Making the Ordinary, Extra-Ordinary</h5>
+            
+            </div>
+        </div>
+    </div>
+
+    <div class="container text-center mt-5"> 
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-1 d-block d-sm-none"></div>
+            <div class="col-5 d-block d-sm-none">  
+                <a href="/register" class="btn btn-outline-success btn-lg btn-block mt-4 shadow-lg rounded"><h3>Register</h3></a>
+            </div>
+            <div class="col-md-3 col-sm-4 col-5 d-none d-sm-block">  
+                <a href="/register" class="btn btn-outline-success btn-lg btn-block mt-4 shadow-lg rounded"><h3>Register</h3></a>
+            </div>
+            <div class="col-md-3 col-sm-4 d-none d-sm-block">
+                <a href="/login" class="btn btn-outline-success btn-lg btn-block mt-4 ml-4 shadow-lg rounded"><h3>Login</h3></a>
+            </div>
+            <div class="col-5 d-block d-sm-none">
+                <a href="/login" class="btn btn-outline-success btn-lg btn-block mt-4 shadow-lg rounded"><h3>Login</h3></a>
+            </div> 
+        </div>
+    </div>
+
+
+    <footer class="fixed-bottom">
+        <div class="container-fluid">
+            <div class="row">
+                
+            </div>
+        </div>
+    </footer>   
 
 <%- include('partials/footer') %>
